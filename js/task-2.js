@@ -15,18 +15,11 @@ const images = [
 
 function addItemsToGallery() {
     const galleryComponent = document.querySelector('.gallery');
+    const markup = images
+        .map(({ url, alt }) => `<li><img src="${url}" alt="${alt}" width="300"></li>`)
+        .join('');
 
-    images.forEach(img => {
-        const createLi = document.createElement('li');
-        const createImg = document.createElement('img');
-
-        createImg.src = img.url;
-        createImg.alt = img.alt;
-        createImg.width = 300;
-
-        createLi.appendChild(createImg);
-        galleryComponent.appendChild(createLi);
-    });
+    galleryComponent.insertAdjacentHTML('beforeend', markup);
 }
 
 addItemsToGallery();

@@ -1,6 +1,13 @@
+const getRandomHexColor = () => {
+    return `#${Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, 0)}`;
+}
+
 function createBoxes(amount) {
     const boxesContainer = document.querySelector('#boxes');
     boxesContainer.innerHTML = '';
+    const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < amount; i++) {
         const box = document.createElement('div');
@@ -9,8 +16,10 @@ function createBoxes(amount) {
         box.style.height = `${size}px`;
         box.style.backgroundColor = getRandomHexColor();
         box.style.marginBottom = '10px';
-        boxesContainer.appendChild(box);
+        fragment.appendChild(box);
     }
+
+    boxesContainer.appendChild(fragment);
 }
 
 function destroyBoxes() {
